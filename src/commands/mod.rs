@@ -1,2 +1,3 @@
 mod echo;
-mod comand;
+mod command;
+mod error;

@@ -1,7 +1,6 @@
 use std::env::current_dir;
 use std::io;
 use std::io::Write;
-use std::path::{PathBuf};
 
 mod commands;
 
