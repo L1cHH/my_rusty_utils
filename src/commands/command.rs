@@ -1,12 +1,15 @@
-pub trait Command<C, const N: usize> {
+use crate::commands::echo::EchoCommand;
+use crate::commands::error::ParsingCommandError;
+
+pub trait Command<const N: usize> {
     fn command_name(&self) -> &str;
-    fn available_args(&self) -> [&'static str; N];
+    fn available_args() -> [&'static str; N];
     fn execute_command(&self);
-    fn from_input_string(input: Vec<String>) -> Result<C, ()> {
-        let command_name = match input.first() {
-            Some(name) => name,
-            None => return Err(println!("No one command was provided..."))
-        };
-        todo!()
-    }
+}
+
+pub trait ParsingCommand<C, const N: usize>
+where
+    C: Command<N>,
+{
+    fn parse_command(input: Vec<String>) -> Result<C, ParsingCommandError>;
 }

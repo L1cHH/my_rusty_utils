@@ -1,3 +1,3 @@
-mod echo;
-mod command;
-mod error;
+pub mod echo;
+pub mod command;
+pub mod error;
