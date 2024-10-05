@@ -19,6 +19,17 @@ fn main() {
         //Reading Input into buffer
         match stdin_lock.read_line(&mut output) {
             Ok(_) => {
+
+                if output.trim() == "exit" {
+                    println!("You successfully exit program");
+                    break
+                }
+
+                output = output
+                    .replace(r"\r", "\r")
+                    .replace(r"\t", "\t")
+                    .replace(r"n", "\n");
+
                 let splitted_command_string = split_command(output);
 
                 if let Err(e) = execute_command(splitted_command_string) {
@@ -30,10 +41,7 @@ fn main() {
             }
         }
 
-        // if output.trim() == "exit" {
-        //     println!("You successfully exit program");
-        //     break
-        // }
+
 
     }
 }

@@ -10,3 +10,5 @@ path = "src/main.rs"
 name = "my_core_utils"
 
 [dependencies]
+clap = { version = "4.5.19" }
+clap_derive = "4.5.18"

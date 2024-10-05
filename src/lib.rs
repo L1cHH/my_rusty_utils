@@ -23,11 +23,11 @@ pub fn split_command(raw_command: String) -> Vec<String> {
     raw_command.into_iter().map(|command_element | command_element.to_string()).collect()
 }
 
-pub fn execute_command(command_input: Vec<String>) -> Result<(), ParsingCommandError> {
-    let command_name = command_input.first().unwrap().as_str();
+pub fn execute_command(mut command_input: Vec<String>) -> Result<(), ParsingCommandError> {
+    let command_name = command_input.remove(0);
 
-    let command = match command_name {
-        "echo" => EchoCommand::parse_command(command_input)?,
+    let command = match command_name.as_str() {
+        "echo" => EchoCommand::parse_command(&mut command_input)?,
         _ => return Err(ParsingCommandError::IncorrectCommandName)
     };
 
